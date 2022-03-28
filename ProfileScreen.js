@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -29,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -64,43 +63,47 @@ const App: () => Node = () => {
 
 
 
-  
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
- <View style={styles.view1}>
-			       <Text>Address            :</Text>
-			       <Text>    Address            </Text>
+        <View style={styles.sectionContainer}>
+          <View style={{marginTop:10}}>
+          <Button title="Press me" accessibilityLabel="Tap on Me"
+          onPress={() => console.log("hhhhh")}          />
+          </View>
+          <View style={{marginTop:10}}>
+          <Button title="Press me" accessibilityLabel="Tap on Me" />
 
+          </View>
+          <View style={{marginTop:10}}>
+          <Button title="Press me" accessibilityLabel="Tap on Me" />
 
-    </View>
-		<View style={styles.view}></View>
+          </View>
+          <View style={{marginTop:10}}>
+          <Button title="Press me" accessibilityLabel="Tap on Me" />
 
-	<View style={styles.view1}>
-			       <Text>Date            :</Text>
-			       <Text>    17 jan 2022            </Text>
-
-
-    </View>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
- 
+
 
 };
- 
+
 const styles = StyleSheet.create({
   sectionContainer: {
     padding: 5,
   },
- buttonContainer: {
+  buttonContainer: {
     padding: 10,
     shadowColor: '#000000',
-	width:150,
-marginLeft:120
+    width: 150,
+    marginLeft: 120
   },
   sectionTitle: {
     fontSize: 24,
@@ -114,13 +117,13 @@ marginLeft:120
   highlight: {
     fontWeight: '700',
   },
-    view1:{flexDirection: 'row'},
-	    view3:{marginLeft:120},
+  view1: { flexDirection: 'row' },
+  view3: { marginLeft: 120 },
 
- view: {
-	 height:10,
-color: Colors.red },
-input: {
+  view2: {
+    fontSize: 15, marginLeft: 220, marginTop: 15, fontWeight: '600', color: Colors.black
+  },
+  input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
@@ -128,7 +131,7 @@ input: {
   },
   inputSmall: {
     height: 40,
-		width:150,
+    width: 150,
 
     margin: 12,
     borderWidth: 1,
@@ -137,4 +140,3 @@ input: {
 });
 
 export default App;
-	<View style={styles.view1}>

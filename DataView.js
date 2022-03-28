@@ -6,7 +6,6 @@
  * @flow strict-local
  */
 
-import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -27,41 +26,74 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import WetherScreen from './WetherScreen'
-import Home from './Home';
-import DataView from './DataView'
-import CreateData from './CreateData'
+import React, {  useState } from 'react';
+import {useRoute} from '@react-navigation/native';
 
-const Stack = createNativeStackNavigator();
-const App = () => {
+
+
+const DataView = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const route = useRoute();
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: 'Home' }}
-        />
-        <Stack.Screen name="WetherScreen" component={WetherScreen} />
-        <Stack.Screen name="CreateData" component={CreateData} />
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <View style={styles.sectionContainer}>
+          <View style={{ marginTop: 10 }}>
+          <View style={styles.viewContainer}>
+          <Text style={{marginTop: 10}}>Reason : {route.params.weight}</Text>
 
-        <Stack.Screen name="DataView" component={DataView} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-
+                    </View>
+         
+         
+        </View>
+             </View>
+    </ScrollView>
+  </SafeAreaView >
+ 
+ );
+ 
 
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
     padding: 5,
+  },
+  viewContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
+    paddingBottom: 5
+},
+textInput: {
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 0 : -12,
+    paddingLeft: 10,
+    color: '#05375a',
+},
+  button: {
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor:'lightblue'
+  },
+  signIn: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+
+    
   },
   buttonContainer: {
     padding: 10,
@@ -103,7 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProfileScreen = ({ navigation, route }) => {
-  return <Text>This is {route.params.name}'s profile</Text>;
-};
-export default App;
+export default DataView;

@@ -30,33 +30,32 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WetherScreen from './WetherScreen'
-import Home from './Home';
-import DataView from './DataView'
-import CreateData from './CreateData'
+import ReviewPage from './ReviewPage'
 
 const Stack = createNativeStackNavigator();
-const App = () => {
+
+
+const Navigation = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+
+
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: 'Home' }}
-        />
-        <Stack.Screen name="WetherScreen" component={WetherScreen} />
-        <Stack.Screen name="CreateData" component={CreateData} />
-
-        <Stack.Screen name="DataView" component={DataView} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-
-
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={WetherScreen}
+        options={{ title: 'Welcome' }}
+      />
+      <Stack.Screen name="Profile" component={ReviewPage} />
+    </Stack.Navigator>
+  </NavigationContainer> );
 };
 
 const styles = StyleSheet.create({
@@ -103,7 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProfileScreen = ({ navigation, route }) => {
-  return <Text>This is {route.params.name}'s profile</Text>;
-};
-export default App;
+export default Navigation;
